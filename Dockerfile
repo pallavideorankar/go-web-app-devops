@@ -4,7 +4,7 @@
 
 # Start with a base image(set alice)
 #Assigns an alias (base) to this stage of the multi-stage build.
-This alias allows you to reference this stage later in the Dockerfile, such as copying files or artifacts from it.
+#This alias allows you to reference this stage later in the Dockerfile, such as copying files or artifacts from it.
 FROM golang:1.21 as base
 
 # Set the working directory inside the container
@@ -19,7 +19,7 @@ RUN go mod download
 # Copy the source code to the working directory
 COPY . .
 
-# Build the application
+# Build the application(artifact by the name main created )
 RUN go build -o main .
 
 # EXPOSE 8080
@@ -31,6 +31,7 @@ RUN go build -o main .
 #Instead, it contains only the minimal runtime dependencies required for an application to run. 
 #This approach helps reduce image size, improve security, and reduce attack surface by excluding unnecessary packages, shell binaries, or tools.
 
+#final stage - distroless image
 FROM gcr.io/distroless/base
 
 # Copy the binary from the previous stage
