@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx ###ingress resources need to identify by ingress controller
   rules:
   - host: go-web-app.local
     http:
